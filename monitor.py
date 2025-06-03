@@ -45,7 +45,7 @@ def process_status():
 		logging.warning("Power Resume!")
 	if(Pstate==3 and SDstate != Pstate):
 		logging.warning("Power Loss. Invoking shutdown script!")
-		subprocess.run(['sh','/opt/carmonitor/shutdown.sh']);
+		subprocess.run(['sh','/opt/CarMonitor/shutdown.sh']);
 		#invoke shutdown
 	SDstate=Pstate
 

@@ -8,7 +8,7 @@ Type=simple
 Restart=always
 RestartSec=1
 User=root
-ExecStart=/usr/bin/python3 /opt/carmonitor/monitor.py
+ExecStart=/usr/bin/python3 /opt/CarMonitor/monitor.py
 
 [Install]
 WantedBy=multi-user.target
