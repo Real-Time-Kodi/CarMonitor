@@ -195,6 +195,10 @@ void progstart() {
     serstate=0;
   } else {
     serstate=1;
+    b1h[progbutt]=0;
+    b1l[progbutt]=1023;
+    b2h[progbutt]=0;
+    b2l[progbutt]=1023;
     Serial.print("Press button for ");
     Serial.print(names[progbutt][0]);
     Serial.print(names[progbutt][1]);
@@ -275,7 +279,7 @@ void loop() {
       if(serstate==0) {
          menuloop(); //we aren't in programming state
       } else {
-        b1l[progbutt]=1023;
+        b1l[progbutt]=1023;//set empty state so we can avoid that button
         b2l[progbutt]=1023;
         b1h[progbutt]=1023;
         b2h[progbutt]=1023;
@@ -328,7 +332,11 @@ void loop() {
             Serial.print("{");
             Serial.print(b1l[progbutt]);
             Serial.print(",");
+            Serial.print(b1h[progbutt]);
+            Serial.print(",");
             Serial.print(b2l[progbutt]);
+            Serial.print(",");
+            Serial.print(b2h[progbutt]);
             Serial.println("} done. Release.");
             serstate=3;
           }
@@ -336,6 +344,7 @@ void loop() {
           Serial.println("ERR:Too Soon");
           progstart();
         }
+        break;
       case 3://waiting for release
         if(sw1>1000 && sw2>1000) {
           progbutt++;
